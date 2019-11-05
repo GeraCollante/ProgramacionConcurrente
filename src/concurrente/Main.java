@@ -2,8 +2,9 @@ package concurrente;
 
 public class Main {
 
+
 	public static boolean debug = false;
-	public static boolean debugRegex = false;
+	public static boolean debugRegex = true;
 	public static boolean alerts = true;
 	public static boolean log = true;
 	public static int nAutos;
@@ -34,10 +35,26 @@ public class Main {
 		rp.calculaL();
 		rp.calculaB();
 		rp.calculaEx();
+		
+		int pol_1ba	[]= {3,7,16,14,12,15,13,10,8,11,9,4,0,5,1,6,2};//Entrada1	pb	salidaA
+		int pol_1bb	[]= {3,7,16,15,13,14,12,10,8,11,9,4,0,5,1,6,2};//Entrada1	pb	salidaB
+		int pol_1aa	[]= {3,7,16,14,12,15,13,11,9,10,8,4,0,5,1,6,2};//Entrada1	pa	salidaA
+		int pol_1ab	[]= {3,7,16,15,13,14,12,11,9,10,8,4,0,5,1,6,2};//Entrada1	pa	salidaB
+		int pol_2ba	[]= {3,7,16,14,12,15,13,10,8,11,9,5,1,4,0,6,2};//Entrada2	pb	salidaA
+		int pol_2bb	[]= {3,7,16,15,13,14,12,10,8,11,9,5,1,4,0,6,2};//Entrada2	pb	salidaB
+		int pol_2aa	[]= {3,7,16,14,12,15,13,11,9,10,8,5,1,4,0,6,2};//Entrada2 	pa	salidaA
+		int pol_2ab	[]= {3,7,16,15,13,14,12,11,9,10,8,5,1,4,0,6,2};//Entrada2 	pa	salidaB
+		int pol_3ba	[]= {3,7,16,14,12,15,13,10,8,11,9,6,2,4,0,5,1};//Entrada3	pb	salidaA
+		int pol_3bb	[]= {3,7,16,15,13,14,12,10,8,11,9,6,2,4,0,5,1};//Entrada3 	pb	salidaB
+		int pol_3aa	[]= {3,7,16,14,12,15,13,11,9,10,8,6,2,4,0,5,1};//Entrada3	pa	salidaA
+		int pol_3ab	[]= {3,7,16,15,13,14,12,11,9,10,8,6,2,4,0,5,1};//Entrada3	pa	salidaB	
+		
 		Politica politicaA = new PoliticaA() ;
 		Politica politicaB = new PoliticaB() ;
 		GestorMonitor gdm = new GestorMonitor(rp,politicaA);
-		gdm.setPolitica(politicaB);		
+		gdm.setPolitica(politicaB);
+		politicaB.setPrioridad(pol_1bb);
+		
 		rp.setMonitor(gdm);
 		nAutos = rp.getMarcado() [0][0];
 		
@@ -95,6 +112,10 @@ public class Main {
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		}
+		if(Main.alerts) {
+			System.out.println("Empieza Regex");
+		}	
+		
 		Regex reg = new Regex(rp.getLog(),nAutos);
 		reg.chequearTInvariantes();
 		reg.printStats();

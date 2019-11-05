@@ -122,6 +122,7 @@ public class Regex {
 		if (aux != 'a' && aux != 'b' && aux != 'c') {
 			if (Main.debugRegex) {
 				System.out.println("GOOD FALLA: " + s);
+				System.exit(-1);
 			}
 			return false;
 		}
