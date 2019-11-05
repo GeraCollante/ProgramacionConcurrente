@@ -2,7 +2,6 @@ package concurrente;
 
 public class Main {
 
-
 	public static boolean debug = false;
 	public static boolean debugRegex = false;
 	public static boolean alerts = true;
